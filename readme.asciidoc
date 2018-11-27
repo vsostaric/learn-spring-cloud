@@ -1,26 +1,26 @@
-# Learn Spring Cloud
+= Learn Spring Cloud
 
-## Description
+== Description
 
 This is where I explore Spring Cloud technologies.
 
-## Current modules
+== Current modules
 
-### Stringmaster
+=== Stringmaster
 
 A small service with simple string operations.
 Exposes a REST API.
 
-### Numbermaster
+=== Numbermaster
 
 A small service with simple number operations.
 Exposes a REST API
 
-### Discover
+=== Discover
 
 Eureka server
 
-### Gateway-Zuul
+=== Gateway-Zuul
 
 Zuul gateway.
 Routes the stringmaster and numbermaster services.

@@ -2,5 +2,6 @@
 */mvnw
 */mvnw.cmd
 */.idea
+.idea
 *.iml
 */target/*
