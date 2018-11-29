@@ -28,6 +28,10 @@ Routes the stringmaster and numbermaster services.
 Zuul gateway.
 Routes the stringmaster and numbermaster services.
 
+=== Gateway-spring
+
+Routes the stringmaster and numbermaster services.
+
 ==== Routing
 If for instance the numbermaster service is running on localhost:8081 then the call http://localhost:8081/numbermaster/square/4 will return 16.
 If Gateway is running on localhost:8092 then the call localhost:8092/numbermaster/square/4 will redirect to localhost:8081 and also return 16.
