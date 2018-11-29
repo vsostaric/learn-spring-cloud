@@ -16,6 +16,6 @@ public class NumbermasterController {
 
     @GetMapping("/square/{number}")
     public Integer square(@PathVariable Integer number) {
-        return number * 2;
+        return Double.valueOf(Math.pow(number, 2)).intValue();
     }
 }

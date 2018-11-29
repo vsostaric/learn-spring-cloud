@@ -5,7 +5,10 @@ import com.google.common.collect.Lists;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.locus.learn.gateway.model.ApiGatewayProperties;
-import org.locus.learn.gateway.transformer.*;
+import org.locus.learn.gateway.transformer.impl.CompositeProxyRequestTransformer;
+import org.locus.learn.gateway.transformer.ProxyRequestTransformer;
+import org.locus.learn.gateway.transformer.impl.ContentRequestTransformer;
+import org.locus.learn.gateway.transformer.impl.UrlRequestTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
@@ -46,6 +49,15 @@ public class ApiGatewayServiceConfiguration {
         restTemplate.setErrorHandler(new RestTemplateErrorHandler());
 
         return restTemplate;
+    }
+
+    @Bean
+    public ProxyRequestTransformer proxyRequestTransformer() {
+        return new CompositeProxyRequestTransformer(
+                Lists.newArrayList(
+                        new UrlRequestTransformer(this.apiGatewayProperties),
+                        new ContentRequestTransformer()
+                ));
     }
 
 }

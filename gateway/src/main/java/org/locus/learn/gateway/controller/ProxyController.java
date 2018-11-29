@@ -8,7 +8,6 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.locus.learn.gateway.transformer.ProxyRequestTransformer;
-import org.locus.learn.gateway.transformer.RequestTransformer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +34,10 @@ public class ProxyController {
 
     private HttpClient httpClient;
 
-    private RequestTransformer requestTransformer;
+    private ProxyRequestTransformer requestTransformer;
 
     @Autowired
-    public ProxyController(RequestTransformer requestTransformer) {
+    public ProxyController(ProxyRequestTransformer requestTransformer) {
 
         this.requestTransformer = requestTransformer;
 

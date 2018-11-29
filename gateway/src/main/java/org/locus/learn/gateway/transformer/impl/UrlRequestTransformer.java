@@ -1,7 +1,8 @@
-package org.locus.learn.gateway.transformer;
+package org.locus.learn.gateway.transformer.impl;
 
 import org.apache.http.client.methods.RequestBuilder;
 import org.locus.learn.gateway.model.ApiGatewayProperties;
+import org.locus.learn.gateway.transformer.ProxyRequestTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;

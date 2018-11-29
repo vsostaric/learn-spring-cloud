@@ -1,6 +1,7 @@
-package org.locus.learn.gateway.transformer;
+package org.locus.learn.gateway.transformer.impl;
 
 import org.apache.http.client.methods.RequestBuilder;
+import org.locus.learn.gateway.transformer.ProxyRequestTransformer;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;

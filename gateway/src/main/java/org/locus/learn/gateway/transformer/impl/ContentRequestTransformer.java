@@ -1,8 +1,9 @@
-package org.locus.learn.gateway.transformer;
+package org.locus.learn.gateway.transformer.impl;
 
 import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
+import org.locus.learn.gateway.transformer.ProxyRequestTransformer;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
