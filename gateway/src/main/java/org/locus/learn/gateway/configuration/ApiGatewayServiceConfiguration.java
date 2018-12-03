@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.locus.learn.gateway.model.ApiGatewayProperties;
 import org.locus.learn.gateway.transformer.impl.CompositeProxyRequestTransformer;
 import org.locus.learn.gateway.transformer.ProxyRequestTransformer;
@@ -33,6 +34,14 @@ public class ApiGatewayServiceConfiguration {
     @Autowired
     public ApiGatewayServiceConfiguration(ApiGatewayProperties apiGatewayProperties) {
         this.apiGatewayProperties = apiGatewayProperties;
+    }
+
+    @Bean
+    public HttpClient httpClient() {
+        PoolingHttpClientConnectionManager connManager = new PoolingHttpClientConnectionManager();
+        return HttpClients.custom()
+                .setConnectionManager(connManager)
+                .build();
     }
 
     @Bean

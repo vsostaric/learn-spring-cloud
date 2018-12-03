@@ -37,14 +37,11 @@ public class ProxyController {
     private ProxyRequestTransformer requestTransformer;
 
     @Autowired
-    public ProxyController(ProxyRequestTransformer requestTransformer) {
+    public ProxyController(final ProxyRequestTransformer requestTransformer,
+                           final HttpClient httpClient) {
 
         this.requestTransformer = requestTransformer;
-
-        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
-        httpClient = HttpClients.custom()
-                .setConnectionManager(cm)
-                .build();
+        this.httpClient = httpClient;
 
     }
 
