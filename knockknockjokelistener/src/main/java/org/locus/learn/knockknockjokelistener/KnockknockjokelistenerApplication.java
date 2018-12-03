@@ -22,7 +22,7 @@ public class KnockknockjokelistenerApplication {
         ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
         executor.scheduleAtFixedRate(() -> {
             jokeListener.getMessage();
-        }, 0, 3, TimeUnit.SECONDS);
+        }, 1, 2, TimeUnit.SECONDS);
 
 
     }

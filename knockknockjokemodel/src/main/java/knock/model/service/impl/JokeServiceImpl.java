@@ -15,6 +15,10 @@ public class JokeServiceImpl implements JokeService {
 
     public JokeStage getJokeStage(String message) {
 
+        if (StringUtils.isEmpty(message)) {
+            return JokeStage.INVALID;
+        }
+
         Optional<String> stageName = getJokePart(message, 0);
 
         if (stageName.isEmpty()) {

@@ -22,9 +22,9 @@ public class KnockknockjokesterApplication {
         ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
         executor.scheduleAtFixedRate(
                 () -> jokester.sendMessage("")
-                , 0, 5, TimeUnit.SECONDS);
+                , 1, 1, TimeUnit.SECONDS);
 
         executor.scheduleAtFixedRate(
-                () -> jokester.getMessage(), 0, 3, TimeUnit.SECONDS);
+                () -> jokester.getMessage(), 1, 2, TimeUnit.SECONDS);
     }
 }

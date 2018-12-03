@@ -32,15 +32,14 @@ public class MessageFactory {
 
         StringBuilder builder = new StringBuilder();
         builder.append(stage);
-
         builder.append(delimiter);
 
         if (JokeStage.PUNCHLINE.equals(stage)) {
 
             Long jokeId = jokeService.getJokeId(oldMessage);
             builder.append(jokeId);
-
             builder.append(delimiter);
+
             builder.append(jokeService.getJokeBody(oldMessage));
             builder.append("\n");
             builder.append(this.name);
@@ -52,6 +51,7 @@ public class MessageFactory {
             Joke joke = jokesHolder.getRandomJoke();
             builder.append(joke.getId());
             builder.append(delimiter);
+
             builder.append(jokeService.getJokeBody(oldMessage));
             builder.append("\n");
             builder.append(this.name);
@@ -65,6 +65,8 @@ public class MessageFactory {
             builder.append(this.name);
             builder.append(": Knock Knock");
 
+        } else {
+            return "";
         }
 
         return builder.toString();

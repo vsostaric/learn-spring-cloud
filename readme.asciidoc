@@ -36,3 +36,6 @@ Routes the stringmaster and numbermaster services.
 If for instance the numbermaster service is running on localhost:8081 then the call http://localhost:8081/numbermaster/square/4 will return 16.
 If Gateway is running on localhost:8092 then the call localhost:8092/numbermaster/square/4 will redirect to localhost:8081 and also return 16.
 If Gateway-Zuul is running on localhost:8090 then the call localhost:8090/nmaster/numbermaster/square/4 will redirect to localhost:8081 and also return 16.
+
+=== KnockKnockJokester and KnockKnockJokeListener
+Must have a rabbitmq running on 5672.
