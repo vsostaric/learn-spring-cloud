@@ -45,19 +45,8 @@ public class ApiGatewayServiceConfiguration {
     }
 
     @Bean
-    public RestTemplate restTemplate(HttpMessageConverters converters) {
-
-        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-        converter.setSupportedMediaTypes(MediaType.parseMediaTypes("application/json"));
-        converter.setObjectMapper(new ObjectMapper());
-
-        HttpClient httpClient = HttpClients.createDefault();
-        RestTemplate restTemplate = new RestTemplate(Collections.<HttpMessageConverter<?>>singletonList(converter));
-        restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory(httpClient));
-
-        restTemplate.setErrorHandler(new RestTemplateErrorHandler());
-
-        return restTemplate;
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 
     @Bean
