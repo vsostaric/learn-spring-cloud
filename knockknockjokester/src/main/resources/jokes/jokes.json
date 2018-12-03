@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "first_line": "Cow says",
+    "second_line": "No, a cow says mooooo!"
+  },
+  {
+    "id": 2,
+    "first_line": "Etch",
+    "second_line": "Bless you, friend."
+  },
+  {
+    "id": 3,
+    "first_line": "Tank",
+    "second_line": "You’re welcome."
+  },
+  {
+    "id": 4,
+    "first_line": "Stopwatch",
+    "second_line": "Stopwatch you’re doing and pay attention!"
+  },
+  {
+    "id": 5,
+    "first_line": "To",
+    "second_line": "It’s to whom."
+  },
+  {
+    "id": 6,
+    "first_line": "Mikey",
+    "second_line": "Mikey doesn’t work so help me out, would you?"
+  },
+  {
+    "id": 7,
+    "first_line": "To",
+    "second_line": "It’s to whom."
+  },
+  {
+    "id": 8,
+    "first_line": "Déja",
+    "second_line": "Knock! Knock!"
+  }
+]
