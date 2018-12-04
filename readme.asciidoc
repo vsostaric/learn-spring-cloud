@@ -38,4 +38,25 @@ If Gateway is running on localhost:8092 then the call localhost:8092/numbermaste
 If Gateway-Zuul is running on localhost:8090 then the call localhost:8090/nmaster/numbermaster/square/4 will redirect to localhost:8081 and also return 16.
 
 === KnockKnockJokester and KnockKnockJokeListener
-Must have a rabbitmq running on 5672.
+Must have a rabbitmq server running on 5672.
+Jokester and JokeListener are two modules which communicate asynchronous using rabbitmq.
+Jokester must be started first since it declares two queues used.
+
+There is a knockknockmodel module used by both of these to consolidate joke states.
+Jokester sends through one channel and received through another.
+Listener uses the same channels but does it vice versa.
+Responds to the channel Jokester listens to and listens to the one Jokester responds to.
+
+Jokester also has a JokeHolder which on start up reads a JSON file and holds a number of Knock Knock jokes, including their setup and punchlines.
+
+The Jokester start by scheduling a starting message which just says "Knock Knock".
+The Listener responds with "Knock Knock, Who's there".
+The Jokester now picks a joke at random and setups with "Knock Knock, Who's there, SETUP".
+The Listener then responds with "Knock Knock, Who's there, SETUP, SETUP who".
+Finally the Jokester sends The Listener then responds with "Knock Knock, Who's there, SETUP, SETUP who, PUNCHLINE" using the same joke is used to setup.
+After receiving the final joke the Listener writes it out in a file.
+
+The Joke stage is followed through the entire process.
+
+== Future improvements
+Make KnockKnock Jokester and Listener more configurable (for instance joke output, queue setup, rate of jokes, ...).

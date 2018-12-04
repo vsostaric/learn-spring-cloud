@@ -13,8 +13,6 @@ import org.springframework.context.annotation.Bean;
 @SpringBootConfiguration
 public class KnockknockjokelistenerConfiguration {
 
-    protected final String knockknockQueueName = "knockknock.joke.queue";
-
     @Bean
     public ConnectionFactory connectionFactory() {
         CachingConnectionFactory connectionFactory =
@@ -32,8 +30,6 @@ public class KnockknockjokelistenerConfiguration {
     @Bean
     public RabbitTemplate knockKnockTemplate() {
         RabbitTemplate template = new RabbitTemplate(connectionFactory());
-        template.setRoutingKey(this.knockknockQueueName);
-        template.setQueue(this.knockknockQueueName);
         template.setReplyTimeout(1000L);
         template.setReceiveTimeout(1000L);
         return template;

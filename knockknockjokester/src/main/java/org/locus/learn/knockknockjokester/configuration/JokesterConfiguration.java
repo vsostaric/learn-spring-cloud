@@ -3,6 +3,7 @@ package org.locus.learn.knockknockjokester.configuration;
 import knock.model.service.JokeService;
 import knock.model.service.impl.JokeServiceImpl;
 import org.springframework.amqp.core.AmqpAdmin;
+import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
@@ -12,8 +13,6 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootConfiguration
 public class JokesterConfiguration {
-
-    private final String knockknockQueueName = "knockknock.joke.queue";
 
     @Bean
     public ConnectionFactory connectionFactory() {
@@ -25,14 +24,17 @@ public class JokesterConfiguration {
 
     @Bean
     public AmqpAdmin amqpAdmin() {
-        return new RabbitAdmin(connectionFactory());
+        RabbitAdmin rabbitAdmin = new RabbitAdmin(connectionFactory());
+        Queue queueSend = new Queue("jokester.send.queue");
+        Queue queueReceive = new Queue("jokester.receive.queue");
+        rabbitAdmin.declareQueue(queueSend);
+        rabbitAdmin.declareQueue(queueReceive);
+        return rabbitAdmin;
     }
 
     @Bean
     public RabbitTemplate knockKnockTemplate() {
         RabbitTemplate template = new RabbitTemplate(connectionFactory());
-        template.setRoutingKey(this.knockknockQueueName);
-        template.setQueue(this.knockknockQueueName);
         template.setReplyTimeout(1000L);
         template.setReceiveTimeout(1000L);
         return template;

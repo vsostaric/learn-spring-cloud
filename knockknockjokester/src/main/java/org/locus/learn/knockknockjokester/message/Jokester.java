@@ -40,12 +40,12 @@ public class Jokester implements JokeExchanger {
             messageToSend = message;
         }
         log.info("Sending: " + messageToSend);
-        rabbitTemplate.convertAndSend(messageToSend);
+        rabbitTemplate.convertAndSend("jokester.send.queue", messageToSend);
     }
 
     public void getMessage() {
 
-        String message = (String) rabbitTemplate.receiveAndConvert();
+        String message = (String) rabbitTemplate.receiveAndConvert("jokester.receive.queue");
         log.info("Got message: " + message);
 
         JokeStage stage = jokeService.getJokeStage(message);
