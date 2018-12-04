@@ -33,7 +33,8 @@ public class JokesterConfiguration {
         RabbitTemplate template = new RabbitTemplate(connectionFactory());
         template.setRoutingKey(this.knockknockQueueName);
         template.setQueue(this.knockknockQueueName);
-        template.setReplyTimeout(10000L);
+        template.setReplyTimeout(1000L);
+        template.setReceiveTimeout(1000L);
         return template;
     }
 

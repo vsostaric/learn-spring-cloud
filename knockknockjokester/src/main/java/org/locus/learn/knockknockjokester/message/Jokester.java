@@ -33,6 +33,7 @@ public class Jokester implements JokeExchanger {
 
         String messageToSend;
         if (StringUtils.isEmpty(message)) {
+            log.info("Starting a joke!");
             messageToSend = messageFactory.createMessage("",
                     JokeStage.KNOCK_KNOCK);
         } else {
