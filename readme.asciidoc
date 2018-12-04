@@ -39,21 +39,21 @@ If Gateway-Zuul is running on localhost:8090 then the call localhost:8090/nmaste
 
 === KnockKnockJokester and KnockKnockJokeListener
 Must have a rabbitmq server running on 5672.
-Jokester and JokeListener are two modules which communicate asynchronous using rabbitmq.
-Jokester must be started first since it declares two queues used.
+Jokester and JokeListener are two modules which communicate asynchronously using rabbitmq.
+Jokester must be started first since it declares two queues which are needed.
 
-There is a knockknockmodel module used by both of these to consolidate joke states.
+There is a knockknockmodel module used by both modules.
 Jokester sends through one channel and received through another.
-Listener uses the same channels but does it vice versa.
-Responds to the channel Jokester listens to and listens to the one Jokester responds to.
+Listener uses the same channels but sends messages vice versa.
+It responds to the channel Jokester listens to and listens to the one Jokester responds to.
 
-Jokester also has a JokeHolder which on start up reads a JSON file and holds a number of Knock Knock jokes, including their setup and punchlines.
+Jokester also has a JokeHolder which reads a JSON file with a number of Knock Knock jokes, including their setup and punchlines.
 
-The Jokester start by scheduling a starting message which just says "Knock Knock".
+The Jokester starts by scheduling a starting message which just says "Knock Knock".
 The Listener responds with "Knock Knock, Who's there".
-The Jokester now picks a joke at random and setups with "Knock Knock, Who's there, SETUP".
-The Listener then responds with "Knock Knock, Who's there, SETUP, SETUP who".
-Finally the Jokester sends The Listener then responds with "Knock Knock, Who's there, SETUP, SETUP who, PUNCHLINE" using the same joke is used to setup.
+The Jokester now picks a joke at random and sends "Knock Knock, Who's there, *SETUP*".
+The Listener then responds with "Knock Knock, Who's there, *SETUP*, *SETUP* who".
+Finally the Jokester responds "Knock Knock, Who's there, *SETUP*, *SETUP* who, *PUNCHLINE*" using the same joke which was used for the setup.
 After receiving the final joke the Listener writes it out in a file.
 
 The Joke stage is followed through the entire process.
