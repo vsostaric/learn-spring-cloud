@@ -1,28 +1,20 @@
 package org.locus.learn.gateway.configuration;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.locus.learn.gateway.model.ApiGatewayProperties;
-import org.locus.learn.gateway.transformer.impl.CompositeProxyRequestTransformer;
 import org.locus.learn.gateway.transformer.ProxyRequestTransformer;
+import org.locus.learn.gateway.transformer.impl.CompositeProxyRequestTransformer;
 import org.locus.learn.gateway.transformer.impl.ContentRequestTransformer;
 import org.locus.learn.gateway.transformer.impl.UrlRequestTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringBootConfiguration;
-import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
-import org.springframework.http.MediaType;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.Collections;
 
 @SpringBootConfiguration
 @Import({AuthConfiguration.class})
