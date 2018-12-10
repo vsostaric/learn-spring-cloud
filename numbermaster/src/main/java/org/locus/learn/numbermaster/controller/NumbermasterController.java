@@ -1,9 +1,10 @@
 package org.locus.learn.numbermaster.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Comparator;
+import java.util.Set;
+import java.util.stream.IntStream;
 
 @RestController
 @RequestMapping("/numbermaster")
@@ -18,4 +19,16 @@ public class NumbermasterController {
     public Integer square(@PathVariable Integer number) {
         return Double.valueOf(Math.pow(number, 2)).intValue();
     }
+
+    @GetMapping("/sqrt/{number}")
+    public Double sqrt(@PathVariable Integer number) {
+        return Math.sqrt(number);
+    }
+
+    @PostMapping("/max")
+    public Integer max(@RequestBody Set<Integer> integers) {
+        return integers.stream()
+                .max(Integer::compareTo).orElse(0);
+    }
+
 }
