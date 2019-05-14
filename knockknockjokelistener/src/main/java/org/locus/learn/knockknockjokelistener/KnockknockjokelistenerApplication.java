@@ -1,13 +1,12 @@
 package org.locus.learn.knockknockjokelistener;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import knock.model.service.JokeExchanger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 public class KnockknockjokelistenerApplication {
@@ -20,9 +19,7 @@ public class KnockknockjokelistenerApplication {
         JokeExchanger jokeListener = context.getBean(JokeExchanger.class);
 
         ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
-        executor.scheduleAtFixedRate(() -> {
-            jokeListener.getMessage();
-        }, 1, 2, TimeUnit.SECONDS);
+        executor.scheduleAtFixedRate(jokeListener::getMessage, 1, 2, TimeUnit.SECONDS);
 
 
     }

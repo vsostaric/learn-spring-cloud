@@ -4,17 +4,12 @@ import knock.model.JokeStage;
 import knock.model.service.JokeExchanger;
 import knock.model.service.JokeService;
 import lombok.extern.slf4j.Slf4j;
+import org.locus.learn.knockknockjokelistener.repository.JokeRepository;
+import org.locus.learn.knockknockjokelistener.repository.entities.JokeEntity;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Slf4j
 @Component
@@ -26,15 +21,19 @@ public class JokeListener implements JokeExchanger {
 
     private MessageFactory messageFactory;
 
+    private JokeRepository jokeRepository;
+
     @Autowired
     public JokeListener(
             final RabbitTemplate rabbitTemplate,
             final JokeService jokeService,
-            final MessageFactory messageFactory
+            final MessageFactory messageFactory,
+            final JokeRepository jokeRepository
     ) {
         this.rabbitTemplate = rabbitTemplate;
         this.jokeService = jokeService;
         this.messageFactory = messageFactory;
+        this.jokeRepository = jokeRepository;
 
     }
 
@@ -68,33 +67,9 @@ public class JokeListener implements JokeExchanger {
 
     }
 
-    private void writeOutJoke(String message) {
-
-        String fileName = "joke" +
-                LocalDateTime
-                        .now()
-                        .format(DateTimeFormatter.ofPattern("DDMMYYhhmmssnn")) +
-                ".txt";
-
-        File file = new File(fileName);
-        boolean isCreated = false;
-        try {
-            isCreated = file.createNewFile();
-        } catch (IOException e) {
-            log.info("Error creating file");
-        }
-
-        if(!isCreated) {
-            return;
-        }
-
-        try (PrintWriter writer = new PrintWriter(file)
-        ) {
-            writer.println(message);
-        } catch (FileNotFoundException e) {
-            log.error(e.getMessage());
-        }
-
+    private void writeOutJoke(final String message) {
+        final JokeEntity joke = jokeRepository.save(new JokeEntity(message));
+        log.info("Joke " + joke.getId() + " saved!");
     }
 
 }
